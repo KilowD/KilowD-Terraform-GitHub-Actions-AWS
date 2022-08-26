@@ -9,7 +9,7 @@ on:
    workflow_dispatch: 
 
 env:
-   ROOT_PATH: '${{ github.workspace }}/main_project'
+   ROOT_PATH: '${{ github.workspace }}/DevMain'
 
 jobs:
   terraform_plan:
