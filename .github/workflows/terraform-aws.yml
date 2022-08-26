@@ -24,7 +24,7 @@ jobs:
         run: |
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} --profile terraform-connect
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile terraform-connect
-          region: us-east-1
+          aws-region: us-east-1
       - name: Terraform Install
         uses: hashicorp/setup-terraform@v1
       - name: Terraform fmt
@@ -59,7 +59,7 @@ jobs:
         run: |
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} --profile terraform-connect
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile terraform-connect
-          region: us-east-1
+          aws-region: us-east-1
       - name: Terraform Install
         uses: hashicorp/setup-terraform@v1
       - name: Terraform fmt
