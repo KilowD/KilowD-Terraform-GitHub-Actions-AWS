@@ -8,6 +8,9 @@ on:
       - main
    workflow_dispatch: 
 
+env:
+   ROOT_PATH: '${{ github.workspace }}/main_project'
+
 jobs:
   terraform_plan:
     runs-on: ubuntu-latest
@@ -28,20 +31,20 @@ jobs:
           terraform --version
           terraform fmt
         continue-on-error: true
-        working-directory: ./terraform/vpc/environment/dev         
+        working-directory: ${{env.ROOT_PATH}}        
       - name: Terraform Init
         id: init
         run: terraform init
-        working-directory: ./terraform/vpc/environment/dev         
+        working-directory: ${{env.ROOT_PATH}}        
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color  
-        working-directory: ./terraform/vpc/environment/dev       
+        working-directory: ${{env.ROOT_PATH}}      
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
         continue-on-error: true
-        working-directory: ./terraform/vpc/environment/dev 
+        working-directory: ${{env.ROOT_PATH}}
 
   terraform_apply:
     runs-on: ubuntu-latest
@@ -63,19 +66,19 @@ jobs:
           terraform --version
           terraform fmt
         continue-on-error: true
-        working-directory: ./terraform/vpc/environment/dev         
+        working-directory: ${{env.ROOT_PATH}}        
       - name: Terraform Init
         id: init
         run: terraform init
-        working-directory: ./terraform/vpc/environment/dev         
+        working-directory: ${{env.ROOT_PATH}}        
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color  
-        working-directory: ./terraform/vpc/environment/dev       
+        working-directory: ${{env.ROOT_PATH}}      
       - name: Terraform Apply
         id: Apply
         run: terraform apply -auto-approve
         continue-on-error: true
-        working-directory: ./terraform/vpc/environment/dev         
+        working-directory: ${{env.ROOT_PATH}}        
           
 
