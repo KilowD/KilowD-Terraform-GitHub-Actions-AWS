@@ -42,7 +42,10 @@ jobs:
         working-directory: ${{env.ROOT_PATH}}      
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color
+        with:
+          terraform_wrapper: false
+      - run: terraform plan -out terraform.plan 
+      - run: terraform show -json terraform.plan | tee terraform.json
         continue-on-error: true
         working-directory: ${{env.ROOT_PATH}}
 
